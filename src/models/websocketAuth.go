@@ -5,13 +5,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/huobiapi/REST-GO-demo/untils"
 	. "github.com/soekchl/myUtils"
 	"golang.org/x/net/websocket"
 )
 
 func WebSocketAuth() {
-	wsAuth, err := websocket.Dial(wsAuthUrl, "", origin)
+	var err error
+	wsAuth, err = websocket.Dial(wsAuthUrl, "", origin)
 	if err != nil {
 		Error(err)
 		return
@@ -60,7 +60,7 @@ func getAuth() []byte {
 	mapParams2Sign["SignatureMethod"] = "HmacSHA256"
 	mapParams2Sign["SignatureVersion"] = "2"
 	mapParams2Sign["Timestamp"] = time.Now().UTC().Format("2006-01-02T15:04:05")
-	mapParams2Sign["Signature"] = untils.CreateSign(mapParams2Sign, "GET", "api.huobi.pro", "/ws/v1", secret_key)
+	mapParams2Sign["Signature"] = CreateSign(mapParams2Sign, "GET", "api.huobi.pro", "/ws/v1", secret_key)
 
 	mapParams2Sign["op"] = "auth"
 	buff, err := json.Marshal(mapParams2Sign)
