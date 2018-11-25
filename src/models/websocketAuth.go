@@ -23,8 +23,6 @@ func WebSocketAuth() {
 	}()
 
 	SendWsCmdAuth(getAuth()) // send auth
-	//SendWsCmdAuth([]byte(`{"op":"sub", "topic":"accounts","cid":"1"}`)) // 账号资金变更 订阅事件
-	SendWsCmdAuth([]byte(`{  "op":"sub", "topic": "orders.ethusdt", "cid":"2"}`)) // eth-usdt 交易变更 订阅事件(订单 提交和撤销)
 
 	var msg = make([]byte, 65536)
 	for {
@@ -38,7 +36,7 @@ func WebSocketAuth() {
 			Error(err)
 			continue
 		}
-		if m < 32 && strings.Index(string(tmBuff), "ping") >= 0 {
+		if m < 64 && strings.Index(string(tmBuff), "ping") >= 0 {
 			SendWsCmdAuth([]byte(strings.Replace(string(tmBuff), "ping", "pong", 1)))
 		} else {
 			RecvWsAuthBuff <- tmBuff

@@ -34,7 +34,7 @@ func WebSocket(key int) {
 			Error(err)
 			continue
 		}
-		if m < 32 && strings.Index(string(tmBuff), "ping") >= 0 {
+		if m < 64 && strings.Index(string(tmBuff), "ping") >= 0 {
 			SendWsCmdAuth([]byte(strings.Replace(string(tmBuff), "ping", "pong", 1)))
 		} else {
 			RecvWsBuff <- tmBuff
