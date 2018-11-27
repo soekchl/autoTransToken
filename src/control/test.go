@@ -38,7 +38,7 @@ func CheckData() {
 				Error(err)
 			}
 			if tt.Data.OrderState == "filled" {
-				Notice(fmt.Sprintf("出售成功 价格=%7v 数量=%4v 手续费用=%6v 种类=%v",
+				Notice(fmt.Sprintf("出售成功 价格=%-7v 数量=%-4v 手续费用=%-6v 种类=%v",
 					tt.Data.OrderPrice,
 					tt.Data.OrderAmount,
 					tt.Data.OrderFees,
