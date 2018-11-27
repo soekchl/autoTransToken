@@ -36,8 +36,6 @@ func CheckData() {
 			err := json.Unmarshal(buff, tt)
 			if err != nil {
 				Error(err)
-				Notice("source buff = ", string(buff))
-				continue
 			}
 			if tt.Data.OrderState == "filled" {
 				Notice(fmt.Sprintf("出售成功 价格=%7v 数量=%4v 手续费用=%6v 种类=%v",
@@ -49,6 +47,6 @@ func CheckData() {
 				continue
 			}
 		}
-		Notice(string(buff))
+		ShowJsonFormat(buff)
 	}
 }
