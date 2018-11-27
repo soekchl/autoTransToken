@@ -11,8 +11,8 @@ func main() {
 	go control.CheckData()
 	stopChan := make(chan os.Signal)
 	signal.Notify(stopChan, os.Interrupt) // 设置信号量 当接受 Ctrl+C 的时候出发
-
-	fmt.Println("Server Closing...")
+	fmt.Println("\nServer Start!!!\n")
 	<-stopChan // wait for SIGINT
+	fmt.Println("Server Closing...")
 	fmt.Println("Server Closed!")
 }
