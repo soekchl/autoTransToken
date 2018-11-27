@@ -47,6 +47,13 @@ func CheckData() {
 				continue
 			}
 		}
-		ShowJsonFormat(buff)
+		str, err := ShowJsonFormat(buff)
+		if err != nil {
+			Error(err)
+			Notice(string(buff))
+			continue
+		}
+		Notice(str)
+
 	}
 }
